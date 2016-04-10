@@ -15,6 +15,10 @@
 		1821AA921CBAEC8D001D9E5B /* OnTheMapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821AA911CBAEC8D001D9E5B /* OnTheMapTests.swift */; };
 		1821AA9D1CBAEC8D001D9E5B /* OnTheMapUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821AA9C1CBAEC8D001D9E5B /* OnTheMapUITests.swift */; };
 		1821AAAE1CBAF2C3001D9E5B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821AAAD1CBAF2C3001D9E5B /* LoginViewController.swift */; };
+		1821AAB01CBAF99B001D9E5B /* NetworkRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821AAAF1CBAF99B001D9E5B /* NetworkRequestBuilder.swift */; };
+		1821AAB41CBAF9E3001D9E5B /* UdacityClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821AAB31CBAF9E3001D9E5B /* UdacityClient.swift */; };
+		1821AAB61CBAFEAA001D9E5B /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821AAB51CBAFEAA001D9E5B /* UdacityConstants.swift */; };
+		1821AAB81CBB007C001D9E5B /* UdacityConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821AAB71CBB007C001D9E5B /* UdacityConvenience.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +53,10 @@
 		1821AA9C1CBAEC8D001D9E5B /* OnTheMapUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnTheMapUITests.swift; sourceTree = "<group>"; };
 		1821AA9E1CBAEC8D001D9E5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1821AAAD1CBAF2C3001D9E5B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		1821AAAF1CBAF99B001D9E5B /* NetworkRequestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRequestBuilder.swift; sourceTree = "<group>"; };
+		1821AAB31CBAF9E3001D9E5B /* UdacityClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityClient.swift; sourceTree = "<group>"; };
+		1821AAB51CBAFEAA001D9E5B /* UdacityConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
+		1821AAB71CBB007C001D9E5B /* UdacityConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConvenience.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +141,8 @@
 		1821AAAA1CBAF288001D9E5B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				1821AAB11CBAF9B5001D9E5B /* Clients */,
+				1821AAAF1CBAF99B001D9E5B /* NetworkRequestBuilder.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -150,6 +160,24 @@
 				1821AAAD1CBAF2C3001D9E5B /* LoginViewController.swift */,
 			);
 			name = Controller;
+			sourceTree = "<group>";
+		};
+		1821AAB11CBAF9B5001D9E5B /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				1821AAB21CBAF9CB001D9E5B /* Udacity */,
+			);
+			name = Clients;
+			sourceTree = "<group>";
+		};
+		1821AAB21CBAF9CB001D9E5B /* Udacity */ = {
+			isa = PBXGroup;
+			children = (
+				1821AAB31CBAF9E3001D9E5B /* UdacityClient.swift */,
+				1821AAB51CBAFEAA001D9E5B /* UdacityConstants.swift */,
+				1821AAB71CBB007C001D9E5B /* UdacityConvenience.swift */,
+			);
+			name = Udacity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,9 +311,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1821AAB41CBAF9E3001D9E5B /* UdacityClient.swift in Sources */,
+				1821AAB01CBAF99B001D9E5B /* NetworkRequestBuilder.swift in Sources */,
 				1821AAAE1CBAF2C3001D9E5B /* LoginViewController.swift in Sources */,
 				1821AA7F1CBAEC8D001D9E5B /* ViewController.swift in Sources */,
 				1821AA7D1CBAEC8D001D9E5B /* AppDelegate.swift in Sources */,
+				1821AAB81CBB007C001D9E5B /* UdacityConvenience.swift in Sources */,
+				1821AAB61CBAFEAA001D9E5B /* UdacityConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

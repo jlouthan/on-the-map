@@ -19,7 +19,16 @@ class LoginViewController: UIViewController {
             print("Missing required field")
             return
         }
-        print("Got required fields \(emailField.text!) and \(passwordField.text!)")
+        UdacityClient.sharedInstance().createSession(emailField.text!, password: passwordField.text!) { (success, error) in
+            
+            //TODO handle or display error better here
+            if success {
+                print("success!")
+            } else {
+                print("error")
+            }
+            
+        }
     }
     
 }
