@@ -94,6 +94,9 @@
                     <mapView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="aPa-0l-3lD">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <connections>
+                            <outlet property="delegate" destination="Q4H-G1-2IK" id="fOG-ph-fAn"/>
+                        </connections>
                     </mapView>
                     <tabBarItem key="tabBarItem" title="Map" id="A4q-Dp-5Af"/>
                     <connections>
