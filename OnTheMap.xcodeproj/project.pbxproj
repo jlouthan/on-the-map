@@ -20,6 +20,7 @@
 		1821AAB61CBAFEAA001D9E5B /* UdacityConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821AAB51CBAFEAA001D9E5B /* UdacityConstants.swift */; };
 		1821AAB81CBB007C001D9E5B /* UdacityConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821AAB71CBB007C001D9E5B /* UdacityConvenience.swift */; };
 		1821AABA1CBB3A41001D9E5B /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821AAB91CBB3A41001D9E5B /* GCDBlackBox.swift */; };
+		1821AABC1CBB3E7E001D9E5B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821AABB1CBB3E7E001D9E5B /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		1821AAB51CBAFEAA001D9E5B /* UdacityConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConstants.swift; sourceTree = "<group>"; };
 		1821AAB71CBB007C001D9E5B /* UdacityConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UdacityConvenience.swift; sourceTree = "<group>"; };
 		1821AAB91CBB3A41001D9E5B /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
+		1821AABB1CBB3E7E001D9E5B /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				1821AAAD1CBAF2C3001D9E5B /* LoginViewController.swift */,
+				1821AABB1CBB3E7E001D9E5B /* MapViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -318,6 +321,7 @@
 				1821AAB41CBAF9E3001D9E5B /* UdacityClient.swift in Sources */,
 				1821AAB01CBAF99B001D9E5B /* NetworkRequestBuilder.swift in Sources */,
 				1821AAAE1CBAF2C3001D9E5B /* LoginViewController.swift in Sources */,
+				1821AABC1CBB3E7E001D9E5B /* MapViewController.swift in Sources */,
 				1821AA7F1CBAEC8D001D9E5B /* ViewController.swift in Sources */,
 				1821AA7D1CBAEC8D001D9E5B /* AppDelegate.swift in Sources */,
 				1821AAB81CBB007C001D9E5B /* UdacityConvenience.swift in Sources */,

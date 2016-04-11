@@ -68,7 +68,7 @@
             </objects>
             <point key="canvasLocation" x="278" y="339"/>
         </scene>
-        <!--Item 2-->
+        <!--List-->
         <scene sceneID="0Zi-yg-KDI">
             <objects>
                 <viewController id="5wc-NZ-GjR" sceneMemberID="viewController">
@@ -81,26 +81,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="Ivf-eK-pAh"/>
+                    <tabBarItem key="tabBarItem" title="List" id="Ivf-eK-pAh"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J9g-9y-72d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2022" y="669"/>
         </scene>
-        <!--Item 1-->
+        <!--Map-->
         <scene sceneID="w6T-OK-CUq">
             <objects>
-                <viewController id="Q4H-G1-2IK" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="QKg-tU-yK8"/>
-                        <viewControllerLayoutGuide type="bottom" id="xVl-fs-I6b"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="eEd-Oy-xvv">
+                <viewController id="Q4H-G1-2IK" customClass="MapViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <mapView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="aPa-0l-3lD">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Item 1" id="A4q-Dp-5Af"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </mapView>
+                    <tabBarItem key="tabBarItem" title="Map" id="A4q-Dp-5Af"/>
+                    <connections>
+                        <outlet property="mapView" destination="aPa-0l-3lD" id="L8u-Ux-hch"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Zh-sY-GL1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
