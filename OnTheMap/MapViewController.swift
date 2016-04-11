@@ -31,6 +31,15 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         annotations.append(annotation)
         
         mapView.addAnnotations(annotations)
+        
+        //Test getting the locations here for now
+        ParseClient.sharedInstance().getStudentLocations { (success, error) in
+            if success {
+                print("success!")
+            } else {
+                print(error)
+            }
+        }
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {

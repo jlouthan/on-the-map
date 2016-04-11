@@ -17,7 +17,11 @@ class NetworkRequestBuilder: NSObject {
     func taskForGETMethod (url: NSURL, completionHandlerForGET: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
         //Accepting a ready-build url, so we start here
-        let request = NSURLRequest(URL: url)
+//        let request = NSURLRequest(URL: url)
+        //TODO add these headers in a better way
+        let request = NSMutableURLRequest(URL: url)
+        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
         
         //Make the request
         let task = session.dataTaskWithRequest(request) { (data, response, error) in

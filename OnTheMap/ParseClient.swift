@@ -1,5 +1,5 @@
 //
-//  UdacityClient.swift
+//  ParseClient.swift
 //  OnTheMap
 //
 //  Created by Jennifer Louthan on 4/10/16.
@@ -8,10 +8,7 @@
 
 import Foundation
 
-class UdacityClient: NSObject {
-    
-    // authentication state
-    var userId: String? = nil
+class ParseClient: NSObject {
     
     // shared request builder
     let requestBuilder = NetworkRequestBuilder.sharedInstance()
@@ -19,19 +16,26 @@ class UdacityClient: NSObject {
     //MARK: Helpers
     
     //create a URL from parameters and method
-    func udacityURLWithMethod(methodPath: String? = nil) -> NSURL {
+    func parseURLWithMethod(parameters: [String: AnyObject], methodPath: String? = nil) -> NSURL {
         let components = NSURLComponents()
         components.scheme = Constants.ApiScheme
         components.host = Constants.ApiHost
         components.path = Constants.ApiPath + (methodPath ?? "")
         
+        components.queryItems = [NSURLQueryItem]()
+        
+        for (key, value) in parameters {
+            let queryItem = NSURLQueryItem(name: key, value: "\(value)")
+            components.queryItems!.append(queryItem)
+        }
+        
         return components.URL!
     }
     
     //MARK: Shared Instance
-    class func sharedInstance() -> UdacityClient {
+    class func sharedInstance() -> ParseClient{
         struct Singleton {
-            static var sharedInstance = UdacityClient()
+            static var sharedInstance = ParseClient()
         }
         return Singleton.sharedInstance
     }
