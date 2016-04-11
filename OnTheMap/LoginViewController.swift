@@ -13,6 +13,7 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var errorLabel: UILabel!
     
     @IBAction func loginPressed(sender: AnyObject) {
         guard !emailField.text!.isEmpty && !passwordField.text!.isEmpty else {
@@ -25,7 +26,11 @@ class LoginViewController: UIViewController {
             if success {
                 print("success!")
             } else {
-                print("error")
+                if let errorText = error!.userInfo[NSLocalizedDescriptionKey] as? String {
+                    performUIUpdatesOnMain({ 
+                        self.errorLabel.text = errorText
+                    })
+                }
             }
             
         }

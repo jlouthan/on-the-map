@@ -1,9 +1,15 @@
 //
 //  GCDBlackBox.swift
-//  OnTheMap
+//  FlickFinder
 //
-//  Created by Jennifer Louthan on 4/10/16.
-//  Copyright © 2016 JennyLouthan. All rights reserved.
+//  Created by Jarrod Parkes on 11/5/15.
+//  Copyright © 2015 Udacity. All rights reserved.
 //
 
 import Foundation
+
+func performUIUpdatesOnMain(updates: () -> Void) {
+    dispatch_async(dispatch_get_main_queue()) {
+        updates()
+    }
+}
