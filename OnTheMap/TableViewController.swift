@@ -16,6 +16,8 @@ class TableViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    //MARK: Table View Delegate
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return ParseClient.sharedInstance().studentInfo.count
     }
@@ -28,5 +30,15 @@ class TableViewController: UITableViewController {
         cell.textLabel?.text = studentInfo.firstName + " " + studentInfo.lastName
         
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let studentInfo = ParseClient.sharedInstance().studentInfo[indexPath.row]
+        
+        if let url = NSURL(string: studentInfo.mediaURL) {
+            if UIApplication.sharedApplication().canOpenURL(url) {
+                UIApplication.sharedApplication().openURL(url)
+            }
+        }
     }
 }
