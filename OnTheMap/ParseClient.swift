@@ -13,6 +13,9 @@ class ParseClient: NSObject {
     // shared request builder
     let requestBuilder = NetworkRequestBuilder.sharedInstance()
     
+    //Current Student Information array
+    var studentInfo = [StudentInformation]()
+    
     //MARK: Helpers
     
     //create a URL from parameters and method

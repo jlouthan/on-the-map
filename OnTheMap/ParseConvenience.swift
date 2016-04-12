@@ -28,15 +28,17 @@ extension ParseClient {
                 return
             }
             
-            print(result)
-            
-//            //Send the desired value(s) to completion handler
-//            if let account = result[JSONResponseKeys.Account] as? [String: AnyObject], let userId = account[JSONResponseKeys.UserId] as? String {
-//                self.userId = userId
-//                completionHandlerForCreateSession(success: true, error: nil)
-//            } else {
-//                completionHandlerForCreateSession(success: false, error: NSError(domain: "create session response parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse Create Session Response"]))
-//            }
+            //Send the desired value(s) to completion handler
+            if let studentLocationResults = result[ResponseKeys.StudentLocationResults] as? [[String: AnyObject]] {
+                let studentInfo = StudentInformation.studentInfoFromResults(studentLocationResults)
+                //Keep the current array of Student Information structs within the Parse Client
+                self.studentInfo = studentInfo
+                print(self.studentInfo)
+                completionHandlerForGetStudentLocations(success: true, error: nil)
+            } else {
+                let error = NSError(domain: "getStudentLocations parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse getStudentLocations response"])
+                completionHandlerForGetStudentLocations(success: false, error: error)
+            }
             
         }
         

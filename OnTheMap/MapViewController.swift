@@ -34,12 +34,15 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         //Test getting the locations here for now
         ParseClient.sharedInstance().getStudentLocations { (success, error) in
-            if success {
-                print("success!")
-            } else {
+            guard success && error == nil else {
+                //TODO show error in UI somehow
                 print(error)
+                return
             }
+            print("success")
+            
         }
+    
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {

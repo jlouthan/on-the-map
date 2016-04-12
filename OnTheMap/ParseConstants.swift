@@ -38,6 +38,16 @@ extension ParseClient {
         static let DefaultLimit = "100"
     }
     
+    //MARK: Response Keys
+    struct ResponseKeys {
+        static let StudentFirstName = "firstName"
+        static let StudentLastName = "lastName"
+        static let StudentLatitude = "latitude"
+        static let StudentLongitude = "longitude"
+        static let StudentMediaURL = "mediaURL"
+        static let StudentLocationResults = "results"
+    }
+    
     //MARK: Header Values {
     struct HeaderValues {
         static let AppId = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
