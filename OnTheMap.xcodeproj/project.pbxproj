@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1821AA7D1CBAEC8D001D9E5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821AA7C1CBAEC8D001D9E5B /* AppDelegate.swift */; };
-		1821AA7F1CBAEC8D001D9E5B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821AA7E1CBAEC8D001D9E5B /* ViewController.swift */; };
 		1821AA821CBAEC8D001D9E5B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1821AA801CBAEC8D001D9E5B /* Main.storyboard */; };
 		1821AA841CBAEC8D001D9E5B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1821AA831CBAEC8D001D9E5B /* Assets.xcassets */; };
 		1821AA871CBAEC8D001D9E5B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1821AA851CBAEC8D001D9E5B /* LaunchScreen.storyboard */; };
@@ -25,6 +24,7 @@
 		1821AAC11CBB46C9001D9E5B /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821AAC01CBB46C9001D9E5B /* ParseConstants.swift */; };
 		1821AAC31CBB488A001D9E5B /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821AAC21CBB488A001D9E5B /* ParseConvenience.swift */; };
 		18CBDB841CBC89B100B1F968 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBDB831CBC89B100B1F968 /* StudentInformation.swift */; };
+		18CBDB861CBC92FE00B1F968 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBDB851CBC92FE00B1F968 /* TableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,7 +47,6 @@
 /* Begin PBXFileReference section */
 		1821AA791CBAEC8D001D9E5B /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1821AA7C1CBAEC8D001D9E5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		1821AA7E1CBAEC8D001D9E5B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		1821AA811CBAEC8D001D9E5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1821AA831CBAEC8D001D9E5B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1821AA861CBAEC8D001D9E5B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -69,6 +68,7 @@
 		1821AAC01CBB46C9001D9E5B /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
 		1821AAC21CBB488A001D9E5B /* ParseConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConvenience.swift; sourceTree = "<group>"; };
 		18CBDB831CBC89B100B1F968 /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
+		18CBDB851CBC92FE00B1F968 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,7 +124,6 @@
 				1821AAAB1CBAF28E001D9E5B /* View */,
 				1821AAAC1CBAF293001D9E5B /* Controller */,
 				1821AA7C1CBAEC8D001D9E5B /* AppDelegate.swift */,
-				1821AA7E1CBAEC8D001D9E5B /* ViewController.swift */,
 				1821AA801CBAEC8D001D9E5B /* Main.storyboard */,
 				1821AA831CBAEC8D001D9E5B /* Assets.xcassets */,
 				1821AA851CBAEC8D001D9E5B /* LaunchScreen.storyboard */,
@@ -172,6 +171,7 @@
 			children = (
 				1821AAAD1CBAF2C3001D9E5B /* LoginViewController.swift */,
 				1821AABB1CBB3E7E001D9E5B /* MapViewController.swift */,
+				18CBDB851CBC92FE00B1F968 /* TableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -338,13 +338,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				1821AABA1CBB3A41001D9E5B /* GCDBlackBox.swift in Sources */,
+				18CBDB861CBC92FE00B1F968 /* TableViewController.swift in Sources */,
 				1821AAC31CBB488A001D9E5B /* ParseConvenience.swift in Sources */,
 				1821AAB41CBAF9E3001D9E5B /* UdacityClient.swift in Sources */,
 				1821AAC11CBB46C9001D9E5B /* ParseConstants.swift in Sources */,
 				1821AAB01CBAF99B001D9E5B /* NetworkRequestBuilder.swift in Sources */,
 				1821AAAE1CBAF2C3001D9E5B /* LoginViewController.swift in Sources */,
 				1821AABC1CBB3E7E001D9E5B /* MapViewController.swift in Sources */,
-				1821AA7F1CBAEC8D001D9E5B /* ViewController.swift in Sources */,
 				1821AABF1CBB4652001D9E5B /* ParseClient.swift in Sources */,
 				1821AA7D1CBAEC8D001D9E5B /* AppDelegate.swift in Sources */,
 				18CBDB841CBC89B100B1F968 /* StudentInformation.swift in Sources */,

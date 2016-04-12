@@ -71,16 +71,26 @@
         <!--List-->
         <scene sceneID="0Zi-yg-KDI">
             <objects>
-                <viewController id="5wc-NZ-GjR" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="0vm-17-aKr"/>
-                        <viewControllerLayoutGuide type="bottom" id="pHH-1l-Zcs"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="0pf-VR-NeP">
+                <viewController id="5wc-NZ-GjR" customClass="TableViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="KF7-Et-cUD">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StudentInfoCell" id="GOA-Tc-4k4">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GOA-Tc-4k4" id="4ae-50-XTi">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="5wc-NZ-GjR" id="Ty3-h9-IRe"/>
+                            <outlet property="delegate" destination="5wc-NZ-GjR" id="mhA-fp-xK3"/>
+                        </connections>
+                    </tableView>
                     <tabBarItem key="tabBarItem" title="List" id="Ivf-eK-pAh"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J9g-9y-72d" userLabel="First Responder" sceneMemberID="firstResponder"/>
