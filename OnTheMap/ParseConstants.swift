@@ -16,6 +16,11 @@ extension ParseClient {
         static let ApiScheme = "https"
         static let ApiHost = "api.parse.com"
         static let ApiPath = "/1"
+        //MARK: Common Headers
+        static let CommonHeaders = [
+            HeaderKeys.AppId: HeaderValues.AppId,
+            HeaderKeys.APIKey: HeaderValues.APIKey
+        ]
     }
     
     //MARK: Methods
@@ -31,6 +36,18 @@ extension ParseClient {
     //MARK: Parameter Values 
     struct ParameterValues {
         static let DefaultLimit = "100"
+    }
+    
+    //MARK: Header Values {
+    struct HeaderValues {
+        static let AppId = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
+        static let APIKey = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
+    }
+    
+    //MARK: Header Keys {
+    struct HeaderKeys {
+        static let AppId = "X-Parse-Application-Id"
+        static let APIKey = "X-Parse-REST-API-Key"
     }
     
 }

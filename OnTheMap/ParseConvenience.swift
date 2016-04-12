@@ -21,7 +21,7 @@ extension ParseClient {
         let url = parseURLWithMethod(parameters, methodPath: Methods.StudentLocations)
         
         //Make the request
-        requestBuilder.taskForGETMethod(url) { (result, error) in
+        requestBuilder.taskForGETMethod(url, headers: Constants.CommonHeaders) { (result, error) in
             
             guard error == nil else {
                 completionHandlerForGetStudentLocations(success: false, error: error)

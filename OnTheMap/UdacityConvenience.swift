@@ -27,7 +27,7 @@ extension UdacityClient {
         ]
         
         //Make the request
-        requestBuilder.taskForPOSTMethod(url, JSONBody: JSONBody) { (result, error) in
+        requestBuilder.taskForPOSTMethod(url, JSONBody: JSONBody, headers: [String:String]()) { (result, error) in
             
             guard error == nil else {
                 completionHandlerForCreateSession(success: false, error: error)

@@ -14,14 +14,14 @@ class NetworkRequestBuilder: NSObject {
     
     
     //MARK: Generic GET Request
-    func taskForGETMethod (url: NSURL, completionHandlerForGET: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    func taskForGETMethod (url: NSURL, headers: [String: String], completionHandlerForGET: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
         //Accepting a ready-build url, so we start here
-//        let request = NSURLRequest(URL: url)
-        //TODO add these headers in a better way
         let request = NSMutableURLRequest(URL: url)
-        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
-        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
+        //Add any headers
+        for (key, value) in headers {
+            request.addValue(value, forHTTPHeaderField: key)
+        }
         
         //Make the request
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
@@ -62,13 +62,17 @@ class NetworkRequestBuilder: NSObject {
     
     // MARK: POST
     
-    func taskForPOSTMethod (url: NSURL, JSONBody: [String: AnyObject], completionHandlerForPOST: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    func taskForPOSTMethod (url: NSURL, JSONBody: [String: AnyObject], headers: [String: String], completionHandlerForPOST: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
         //Accepting a ready-build url, so we start here
         let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        //Add any additional headers
+        for (key, value) in headers {
+            request.addValue(value, forHTTPHeaderField: key)
+        }
         request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(JSONBody, options: .PrettyPrinted)
         
         //Make the request
