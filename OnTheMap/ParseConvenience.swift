@@ -33,7 +33,6 @@ extension ParseClient {
                 let studentInfo = StudentInformation.studentInfoFromResults(studentLocationResults)
                 //Keep the current array of Student Information structs within the Parse Client
                 self.studentInfo = studentInfo
-                print(self.studentInfo)
                 completionHandlerForGetStudentLocations(success: true, error: nil)
             } else {
                 let error = NSError(domain: "getStudentLocations parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse getStudentLocations response"])

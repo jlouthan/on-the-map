@@ -14,24 +14,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
  
     override func viewDidLoad() {
         super.viewDidLoad()
-        //get and add annotations here? Maybe get them in view will appear?
-        
-        //Add a test annotation
-        var annotations = [MKPointAnnotation]()
-        
-        let lat = CLLocationDegrees(35.6528)
-        let long = CLLocationDegrees(-97.4777778)
-        let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-        
-        let annotation = MKPointAnnotation()
-        annotation.title = "Test Annotation"
-        annotation.subtitle = "www.example.com"
-        annotation.coordinate = coordinate
-        
-        annotations.append(annotation)
-        
-        mapView.addAnnotations(annotations)
-        
+
         //Test getting the locations here for now
         ParseClient.sharedInstance().getStudentLocations { (success, error) in
             guard success && error == nil else {
@@ -39,11 +22,31 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 print(error)
                 return
             }
-            print("success")
-            
+            self.refreshMap()
         }
     
     }
+    
+    //MARK: Refresh the map
+    private func refreshMap() -> Void{
+        var annotations = [MKPointAnnotation]()
+        
+        //Create an annotation for each student location returned
+        for studentInfo in ParseClient.sharedInstance().studentInfo {
+            let annotation = MKPointAnnotation()
+            annotation.title = "\(studentInfo.firstName) \(studentInfo.lastName)"
+            annotation.subtitle = studentInfo.mediaURL
+            let lat = CLLocationDegrees(studentInfo.latitude)
+            let long = CLLocationDegrees(studentInfo.longitude)
+            annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+            annotations.append(annotation)
+        }
+        performUIUpdatesOnMain({
+            self.mapView.addAnnotations(annotations)
+        })
+    }
+    
+    //MARK: MKMapViewDelegate
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
