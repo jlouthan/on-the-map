@@ -66,7 +66,23 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="278" y="339"/>
+            <point key="canvasLocation" x="-494" y="341"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="iNq-uj-h09">
+            <objects>
+                <navigationController storyboardIdentifier="MapNavigationController" id="iEm-Hn-sKr" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ztK-aC-HaK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="4d4-VS-G1W" kind="relationship" relationship="rootViewController" id="PK9-2s-KEq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CGQ-n5-NsL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="386" y="341"/>
         </scene>
         <!--List-->
         <scene sceneID="0Zi-yg-KDI">
@@ -78,7 +94,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="StudentInfoCell" id="GOA-Tc-4k4">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GOA-Tc-4k4" id="4ae-50-XTi">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -121,6 +137,7 @@
         <scene sceneID="fBe-Zg-o4b">
             <objects>
                 <tabBarController storyboardIdentifier="TabBarController" id="4d4-VS-G1W" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="a9A-gS-ekm"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="7bb-1u-qjz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
