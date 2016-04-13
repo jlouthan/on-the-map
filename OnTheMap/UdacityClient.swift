@@ -12,6 +12,8 @@ class UdacityClient: NSObject {
     
     // authentication state
     var userId: String? = nil
+    var userFirstName: String? = nil
+    var userLastName: String? = nil
     
     // shared request builder
     let requestBuilder = NetworkRequestBuilder.sharedInstance()

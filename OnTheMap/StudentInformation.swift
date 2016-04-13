@@ -19,6 +19,8 @@ struct StudentInformation {
     let latitude: Double
     let longitude: Double
     let mediaURL: String
+    let id: String
+    let mapString: String
     
     //MARK: Initializers
     
@@ -29,6 +31,8 @@ struct StudentInformation {
         latitude = dictionary[ParseClient.ResponseKeys.StudentLatitude] as! Double
         longitude = dictionary[ParseClient.ResponseKeys.StudentLongitude] as! Double
         mediaURL = dictionary[ParseClient.ResponseKeys.StudentMediaURL] as! String
+        id = dictionary[ParseClient.ResponseKeys.StudentId] as! String
+        mapString = dictionary[ParseClient.ResponseKeys.MapString] as! String
     }
     
     static func studentInfoFromResults(results: [[String:AnyObject]]) -> [StudentInformation] {

@@ -114,10 +114,10 @@
             </objects>
             <point key="canvasLocation" x="2022" y="669"/>
         </scene>
-        <!--View Controller-->
+        <!--Info Posting View Controller-->
         <scene sceneID="6LJ-dl-gWD">
             <objects>
-                <viewController id="vqn-mk-43O" sceneMemberID="viewController">
+                <viewController id="vqn-mk-43O" customClass="InfoPostingViewController" customModule="OnTheMap" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OFF-0e-2YE"/>
                         <viewControllerLayoutGuide type="bottom" id="uZQ-YF-RpT"/>
@@ -137,6 +137,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zSo-0G-afx">
                                 <rect key="frame" x="276" y="377" width="49" height="30"/>
                                 <state key="normal" title="Submit"/>
+                                <connections>
+                                    <action selector="submitPressed:" destination="vqn-mk-43O" eventType="touchUpInside" id="G0M-tN-sEo"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -147,6 +150,9 @@
                             <constraint firstItem="uEz-Nt-WJL" firstAttribute="centerX" secondItem="BaL-FU-kbi" secondAttribute="centerX" id="eR2-Oi-J7r"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="textInput" destination="uEz-Nt-WJL" id="ohS-WP-dX2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AoM-TK-Zss" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -42,4 +42,32 @@ extension ParseClient {
         }
         
     }
+    
+    func postStudentLocation(studentInfo: StudentInformation, completionHandlerForPostStudentLocation: (success: Bool, error: NSError?) -> Void) {
+        
+        //Create the NSURL
+        let parameters = [String: AnyObject]()
+        let url = parseURLWithMethod(parameters, methodPath: Methods.PostStudentLocation)
+        
+        //Create the jsonBody dictionary
+        let jsonBody = [
+            JSONBodyKeys.StudentId: studentInfo.id,
+            JSONBodyKeys.FirstName: studentInfo.firstName,
+            JSONBodyKeys.LastName: studentInfo.lastName,
+            JSONBodyKeys.MapString: studentInfo.mapString,
+            JSONBodyKeys.MediaURL: studentInfo.mediaURL,
+            JSONBodyKeys.Latitude: studentInfo.latitude,
+            JSONBodyKeys.Longitude: studentInfo.longitude,
+        ]
+        
+        requestBuilder.taskForPOSTMethod(url, JSONBody: jsonBody as! [String: AnyObject], headers: Constants.CommonHeaders) { (result, error) in
+            
+            guard error == nil else {
+                completionHandlerForPostStudentLocation(success: false, error: error)
+                return
+            }
+            
+        }
+        
+    }
 }

@@ -37,13 +37,41 @@ extension UdacityClient {
             //Send the desired value(s) to completion handler
             if let account = result[JSONResponseKeys.Account] as? [String: AnyObject], let userId = account[JSONResponseKeys.UserId] as? String {
                 self.userId = userId
-                completionHandlerForCreateSession(success: true, error: nil)
+                self.getUserInfo(userId, completionHandlerForGetUserInfo: { (result, error) in
+                    guard error == nil else {
+                        completionHandlerForCreateSession(success: false, error: error)
+                        return
+                    }
+                    if let firstName = result[JSONResponseKeys.FirstName] as? String, let lastName = result[JSONResponseKeys.LastName] as? String {
+                        self.userFirstName = firstName
+                        self.userLastName = lastName
+                    }
+                    completionHandlerForCreateSession(success: true, error: nil)
+                });
             } else {
                 completionHandlerForCreateSession(success: false, error: NSError(domain: "create session response parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse Create Session Response"]))
             }
             
         }
         
+    }
+    
+    func getUserInfo(userId: String, completionHandlerForGetUserInfo: (result: AnyObject!, error: NSError?) -> Void) {
+        //Create the URL
+        let url = udacityURLWithMethod(requestBuilder.subtituteKeyInMethod(Methods.UserData, key: URLKeys.UserId, value: userId))
+        requestBuilder.taskForGETMethod(url, headers: [String:String]()) { (result, error) in
+            
+            guard error == nil else {
+                completionHandlerForGetUserInfo(result: nil, error: error)
+                return
+            }
+            if let userInfo = result[JSONResponseKeys.User] as? [String: AnyObject] {
+                completionHandlerForGetUserInfo(result: userInfo, error: nil)
+            } else {
+                completionHandlerForGetUserInfo(result: nil, error: NSError(domain: "get user info response parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse Get User Info Response as expected"]))
+            }
+            
+        }
     }
     
 }

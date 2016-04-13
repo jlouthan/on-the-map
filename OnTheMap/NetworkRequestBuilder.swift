@@ -96,26 +96,23 @@ class NetworkRequestBuilder: NSObject {
                 return
             }
             
-            //For now, specialize for Udacity API. TODO fix this
-            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
-            
             /* GUARD: Did we get a successful 2XX response? */
             guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
                 //Parse out the error description to provide good error messages in the UI
                 let errorString: String
                 do {
                     //TODO actually use the dictionary here?
-                    let errorDict = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments)
+                    let errorDict = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
                     errorString = errorDict["error"] as! String
                 } catch {
-                    errorString = NSString(data: newData, encoding: NSUTF8StringEncoding) as! String
+                    errorString = NSString(data: data, encoding: NSUTF8StringEncoding) as! String
                 }
                 sendError(errorString)
                 return
             }
             
             //Parse the data and use the data (happens in completion handler) */
-            self.convertDataWithCompletionHandler(newData, completionHandlerForConvertData: completionHandlerForPOST)
+            self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForPOST)
         }
         
         //Start the request
@@ -133,8 +130,25 @@ class NetworkRequestBuilder: NSObject {
             parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
             completionHandlerForConvertData(result: parsedResult, error: nil)
         } catch {
-            let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]
-            completionHandlerForConvertData(result: nil, error: NSError(domain: "convertDataWithCompletionHandler", code: 1, userInfo: userInfo))
+            //Special Udacity case
+            //TODO clean this up
+            let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
+            do {
+                parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments)
+                completionHandlerForConvertData(result: parsedResult, error: nil)
+            } catch {
+                let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]
+                completionHandlerForConvertData(result: nil, error: NSError(domain: "convertDataWithCompletionHandler", code: 1, userInfo: userInfo))
+            }
+        }
+    }
+    
+    // substitute the key for the value that is contained within the method name
+    func subtituteKeyInMethod(method: String, key: String, value: String) -> String? {
+        if method.rangeOfString("{\(key)}") != nil {
+            return method.stringByReplacingOccurrencesOfString("{\(key)}", withString: value)
+        } else {
+            return nil
         }
     }
     

@@ -21,6 +21,12 @@ extension UdacityClient {
     //MARK: Methods
     struct Methods {
         static let CreateSession = "/session"
+        static let UserData = "/users/{userId}"
+    }
+    
+    //MARKL URLKeys
+    struct URLKeys {
+        static let UserId = "userId"
     }
     
     // MARK: JSON Body Keys
@@ -34,5 +40,8 @@ extension UdacityClient {
     struct JSONResponseKeys {
         static let Account = "account"
         static let UserId = "key"
+        static let User = "user"
+        static let FirstName = "first_name"
+        static let LastName = "last_name"
     }
 }
