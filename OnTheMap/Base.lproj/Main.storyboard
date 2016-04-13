@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Navigation items with more than one left or right bar item" minToolsVersion="7.0"/>
     </dependencies>
     <scenes>
         <!--Login View Controller-->
@@ -107,7 +108,7 @@
                             <outlet property="delegate" destination="5wc-NZ-GjR" id="mhA-fp-xK3"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="List" id="Ivf-eK-pAh"/>
+                    <tabBarItem key="tabBarItem" title="List" image="List" id="Ivf-eK-pAh"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J9g-9y-72d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -124,7 +125,7 @@
                             <outlet property="delegate" destination="Q4H-G1-2IK" id="fOG-ph-fAn"/>
                         </connections>
                     </mapView>
-                    <tabBarItem key="tabBarItem" title="Map" id="A4q-Dp-5Af"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="Map" id="A4q-Dp-5Af"/>
                     <connections>
                         <outlet property="mapView" destination="aPa-0l-3lD" id="L8u-Ux-hch"/>
                     </connections>
@@ -133,11 +134,17 @@
             </objects>
             <point key="canvasLocation" x="2020" y="9"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--On The Map-->
         <scene sceneID="fBe-Zg-o4b">
             <objects>
                 <tabBarController storyboardIdentifier="TabBarController" id="4d4-VS-G1W" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="a9A-gS-ekm"/>
+                    <navigationItem key="navigationItem" title="On The Map" id="a9A-gS-ekm">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="CM3-f1-Blr"/>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="refresh" id="RW5-se-WTc"/>
+                            <barButtonItem image="Pin" id="bZ8-FW-Dg7"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="7bb-1u-qjz">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -153,4 +160,9 @@
             <point key="canvasLocation" x="1196" y="341"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="List" width="32" height="32"/>
+        <image name="Map" width="32" height="32"/>
+        <image name="Pin" width="32" height="32"/>
+    </resources>
 </document>
