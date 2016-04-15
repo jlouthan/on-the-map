@@ -160,17 +160,32 @@
                                     <action selector="submitPressed:" destination="vqn-mk-43O" eventType="touchUpInside" id="G0M-tN-sEo"/>
                                 </connections>
                             </button>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ylC-CZ-RBE">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Post a Location" id="fEh-JY-3HA">
+                                        <barButtonItem key="rightBarButtonItem" title="Cancel" id="FYx-g1-92K">
+                                            <connections>
+                                                <action selector="cancelPressed:" destination="vqn-mk-43O" id="drR-tL-5WT"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Fej-gQ-VA9" firstAttribute="top" secondItem="OFF-0e-2YE" secondAttribute="bottom" constant="145" id="614-MI-kOk"/>
+                            <constraint firstItem="ylC-CZ-RBE" firstAttribute="leading" secondItem="BaL-FU-kbi" secondAttribute="leadingMargin" constant="-20" id="AOC-Re-dsM"/>
                             <constraint firstItem="Fej-gQ-VA9" firstAttribute="leading" secondItem="BaL-FU-kbi" secondAttribute="leadingMargin" constant="-20" id="K2g-Yi-Wdc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Fej-gQ-VA9" secondAttribute="trailing" constant="-20" id="Myb-qz-DM3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ylC-CZ-RBE" secondAttribute="trailing" constant="-20" id="RR6-mf-Gkf"/>
                             <constraint firstItem="uZQ-YF-RpT" firstAttribute="top" secondItem="Fej-gQ-VA9" secondAttribute="bottom" id="TfE-KW-yMH"/>
                             <constraint firstItem="zSo-0G-afx" firstAttribute="top" secondItem="Fej-gQ-VA9" secondAttribute="bottom" constant="-42" id="bCL-jz-sgV"/>
                             <constraint firstItem="5Ig-us-QTM" firstAttribute="top" secondItem="NdI-b0-egQ" secondAttribute="bottom" constant="62" id="lPV-7U-fdy"/>
                             <constraint firstItem="Fej-gQ-VA9" firstAttribute="top" secondItem="uEz-Nt-WJL" secondAttribute="bottom" constant="37" id="nxD-9M-PQk"/>
                             <constraint firstItem="NdI-b0-egQ" firstAttribute="centerX" secondItem="BaL-FU-kbi" secondAttribute="centerX" id="p3H-il-Bqa"/>
+                            <constraint firstItem="ylC-CZ-RBE" firstAttribute="top" secondItem="OFF-0e-2YE" secondAttribute="bottom" id="s9N-sz-O52"/>
                             <constraint firstItem="uEz-Nt-WJL" firstAttribute="centerX" secondItem="BaL-FU-kbi" secondAttribute="centerX" id="t3d-TQ-kCJ"/>
                             <constraint firstItem="5Ig-us-QTM" firstAttribute="centerX" secondItem="BaL-FU-kbi" secondAttribute="centerX" id="trL-Be-dBD"/>
                             <constraint firstItem="NdI-b0-egQ" firstAttribute="top" secondItem="OFF-0e-2YE" secondAttribute="bottom" constant="265" id="u6e-8Z-59F"/>
