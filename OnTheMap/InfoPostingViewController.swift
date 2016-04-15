@@ -18,8 +18,8 @@ class InfoPostingViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     //MARK: Submission State
-    var mapString: String?
-    var pinLocation: CLLocationCoordinate2D?
+    var mapString: String = ""
+    var pinLocation: CLLocationCoordinate2D = CLLocationCoordinate2D()
     
     //MARK: Life Cycle
     
@@ -48,15 +48,20 @@ class InfoPostingViewController: UIViewController {
     }
     
     @IBAction func submitPressed(sender: AnyObject) {
+        guard !mediaLinkTextField.text!.isEmpty else {
+            print("Missing required field")
+            return
+        }
+        
         let currentStudentDict = [
             ParseClient.ResponseKeys.StudentFirstName: UdacityClient.sharedInstance().userFirstName!,
             ParseClient.ResponseKeys.StudentLastName: UdacityClient.sharedInstance().userLastName!,
             //dummy values for not. get from UI later
-            ParseClient.ResponseKeys.StudentLatitude: 45.523452,
-            ParseClient.ResponseKeys.StudentLongitude: -122.676207,
-            ParseClient.ResponseKeys.StudentMediaURL: "https://www.reddit.com/r/portland",
+            ParseClient.ResponseKeys.StudentLatitude: pinLocation.latitude,
+            ParseClient.ResponseKeys.StudentLongitude: pinLocation.longitude,
+            ParseClient.ResponseKeys.StudentMediaURL: mediaLinkTextField.text!,
             ParseClient.ResponseKeys.StudentId: UdacityClient.sharedInstance().userId!,
-            ParseClient.ResponseKeys.MapString: "Portland, OR"
+            ParseClient.ResponseKeys.MapString: mapString
         ] as [String: AnyObject]
         
         let currentStudent = StudentInformation(dictionary: currentStudentDict)
@@ -73,11 +78,14 @@ class InfoPostingViewController: UIViewController {
             if let placemark = placemarks?.first {
                 //Set pinLocation to proper coordinate and display on a map view
                 self.pinLocation = placemark.location!.coordinate
+                self.mapString = locationString
                 
                 let annotation = MKPointAnnotation()
-                annotation.coordinate = self.pinLocation!
+                annotation.coordinate = self.pinLocation
                 self.mapView.hidden = false
                 self.mapView.addAnnotation(annotation)
+                self.mediaLinkTextField.hidden = false
+                self.submitButton.hidden = false
             }
         }
     }
