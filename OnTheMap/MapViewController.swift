@@ -11,39 +11,43 @@ import MapKit
 
 class MapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet var mapView: MKMapView!
- 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //Test getting the locations here for now
+        
+        parentViewController!.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .Plain, target: self, action: #selector(MapViewController.logout))
+        
+        refreshMap()
+    }
+    
+    //MARK: Refresh the map
+    private func refreshMap() -> Void{
+        
         ParseClient.sharedInstance().getStudentLocations { (success, error) in
             guard success && error == nil else {
                 //TODO show error in UI somehow
                 print(error)
                 return
             }
-            self.refreshMap()
+            
+            var annotations = [MKPointAnnotation]()
+            
+            //Create an annotation for each student location returned
+            for studentInfo in ParseClient.sharedInstance().studentInfo {
+                let annotation = MKPointAnnotation()
+                annotation.title = "\(studentInfo.firstName) \(studentInfo.lastName)"
+                annotation.subtitle = studentInfo.mediaURL
+                let lat = CLLocationDegrees(studentInfo.latitude)
+                let long = CLLocationDegrees(studentInfo.longitude)
+                annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
+                annotations.append(annotation)
+            }
+            performUIUpdatesOnMain({
+                self.mapView.addAnnotations(annotations)
+            })
+            
         }
-    
-    }
-    
-    //MARK: Refresh the map
-    private func refreshMap() -> Void{
-        var annotations = [MKPointAnnotation]()
-        
-        //Create an annotation for each student location returned
-        for studentInfo in ParseClient.sharedInstance().studentInfo {
-            let annotation = MKPointAnnotation()
-            annotation.title = "\(studentInfo.firstName) \(studentInfo.lastName)"
-            annotation.subtitle = studentInfo.mediaURL
-            let lat = CLLocationDegrees(studentInfo.latitude)
-            let long = CLLocationDegrees(studentInfo.longitude)
-            annotation.coordinate = CLLocationCoordinate2D(latitude: lat, longitude: long)
-            annotations.append(annotation)
-        }
-        performUIUpdatesOnMain({
-            self.mapView.addAnnotations(annotations)
-        })
+
     }
     
     //MARK: MKMapViewDelegate
@@ -81,5 +85,11 @@ class MapViewController: UIViewController, MKMapViewDelegate {
             }
             
         }
+    }
+    
+    //MARK: Logout
+    func logout() {
+        //TODO actually log out here with Udacity client
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }

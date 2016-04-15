@@ -229,7 +229,6 @@
             <objects>
                 <tabBarController storyboardIdentifier="TabBarController" id="4d4-VS-G1W" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" title="On The Map" id="a9A-gS-ekm">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="CM3-f1-Blr"/>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="refresh" id="RW5-se-WTc"/>
                             <barButtonItem image="Pin" id="bZ8-FW-Dg7">
