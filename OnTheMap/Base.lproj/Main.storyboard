@@ -98,7 +98,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="GOA-Tc-4k4" id="4ae-50-XTi">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -126,7 +126,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uEz-Nt-WJL">
+                            <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uEz-Nt-WJL">
                                 <rect key="frame" x="249" y="285" width="102" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="102" id="ZGq-MT-ri8"/>
@@ -134,13 +134,31 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zSo-0G-afx">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zSo-0G-afx">
                                 <rect key="frame" x="276" y="377" width="49" height="30"/>
                                 <state key="normal" title="Submit"/>
                                 <connections>
                                     <action selector="submitPressed:" destination="vqn-mk-43O" eventType="touchUpInside" id="G0M-tN-sEo"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ig-us-QTM">
+                                <rect key="frame" x="245" y="377" width="111" height="30"/>
+                                <state key="normal" title="Find on the Map"/>
+                                <connections>
+                                    <action selector="findOnMapPressed:" destination="vqn-mk-43O" eventType="touchUpInside" id="GCe-8Q-g0O"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NdI-b0-egQ">
+                                <rect key="frame" x="249" y="285" width="102" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="102" id="NeL-rW-PX0"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <mapView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Fej-gQ-VA9">
+                                <rect key="frame" x="0.0" y="155" width="600" height="445"/>
+                            </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -148,10 +166,18 @@
                             <constraint firstItem="uEz-Nt-WJL" firstAttribute="top" secondItem="OFF-0e-2YE" secondAttribute="bottom" constant="265" id="HpQ-8x-iCb"/>
                             <constraint firstItem="zSo-0G-afx" firstAttribute="top" secondItem="uEz-Nt-WJL" secondAttribute="bottom" constant="62" id="QbU-V9-BKM"/>
                             <constraint firstItem="uEz-Nt-WJL" firstAttribute="centerX" secondItem="BaL-FU-kbi" secondAttribute="centerX" id="eR2-Oi-J7r"/>
+                            <constraint firstItem="NdI-b0-egQ" firstAttribute="centerX" secondItem="BaL-FU-kbi" secondAttribute="centerX" id="p3H-il-Bqa"/>
+                            <constraint firstItem="5Ig-us-QTM" firstAttribute="centerX" secondItem="BaL-FU-kbi" secondAttribute="centerX" id="trL-Be-dBD"/>
+                            <constraint firstItem="NdI-b0-egQ" firstAttribute="top" secondItem="OFF-0e-2YE" secondAttribute="bottom" constant="265" id="u6e-8Z-59F"/>
+                            <constraint firstItem="5Ig-us-QTM" firstAttribute="top" secondItem="uEz-Nt-WJL" secondAttribute="bottom" constant="62" id="w3L-tb-7TB"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="textInput" destination="uEz-Nt-WJL" id="ohS-WP-dX2"/>
+                        <outlet property="findOnMapButton" destination="5Ig-us-QTM" id="GpV-hn-sC0"/>
+                        <outlet property="locationTextField" destination="NdI-b0-egQ" id="l5O-Mg-U7F"/>
+                        <outlet property="mapView" destination="Fej-gQ-VA9" id="r2V-df-jdk"/>
+                        <outlet property="mediaLinkTextField" destination="uEz-Nt-WJL" id="rH7-oh-q5t"/>
+                        <outlet property="submitButton" destination="zSo-0G-afx" id="oiW-Xs-ZOg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AoM-TK-Zss" userLabel="First Responder" sceneMemberID="firstResponder"/>
