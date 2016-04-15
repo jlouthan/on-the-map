@@ -67,6 +67,8 @@ extension ParseClient {
                 return
             }
             
+            print(result)
+            completionHandlerForPostStudentLocation(success: true, error: nil)
         }
         
     }

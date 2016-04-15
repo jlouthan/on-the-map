@@ -66,6 +66,15 @@ class InfoPostingViewController: UIViewController {
         
         let currentStudent = StudentInformation(dictionary: currentStudentDict)
         print(currentStudent)
+        ParseClient.sharedInstance().postStudentLocation(currentStudent) { (success, error) in
+            guard error == nil else {
+                //TODO do something if there's an error
+                print(error)
+                return
+            }
+            print("success posting new location")
+            self.dismiss()
+        }
     }
     
     private func handleLocationString(locationString: String) {
@@ -92,7 +101,12 @@ class InfoPostingViewController: UIViewController {
             }
         }
     }
-    @IBAction func cancelPressed(sender: AnyObject) {
+    
+    private func dismiss() {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func cancelPressed(sender: AnyObject) {
+        dismiss()
     }
 }
