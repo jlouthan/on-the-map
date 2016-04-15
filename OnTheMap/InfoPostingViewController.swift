@@ -84,6 +84,9 @@ class InfoPostingViewController: UIViewController {
                 annotation.coordinate = self.pinLocation
                 self.mapView.hidden = false
                 self.mapView.addAnnotation(annotation)
+                let region = MKCoordinateRegionMakeWithDistance(self.pinLocation, 2000, 2000)
+                self.mapView.setRegion(region, animated: true)
+                
                 self.mediaLinkTextField.hidden = false
                 self.submitButton.hidden = false
             }
