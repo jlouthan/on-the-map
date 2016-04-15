@@ -17,11 +17,14 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         parentViewController!.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Logout", style: .Plain, target: self, action: #selector(MapViewController.logout))
         
+        let refreshButton = UIBarButtonItem(barButtonSystemItem: .Refresh, target: self, action: #selector(MapViewController.refreshMap))
+        parentViewController!.navigationItem.rightBarButtonItems?.insert(refreshButton, atIndex: 0)
+        
         refreshMap()
     }
     
     //MARK: Refresh the map
-    private func refreshMap() -> Void{
+    func refreshMap() -> Void{
         
         ParseClient.sharedInstance().getStudentLocations { (success, error) in
             guard success && error == nil else {
@@ -43,6 +46,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 annotations.append(annotation)
             }
             performUIUpdatesOnMain({
+                self.mapView.removeAnnotations(self.mapView.annotations)
                 self.mapView.addAnnotations(annotations)
             })
             
