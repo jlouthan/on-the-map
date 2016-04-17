@@ -118,7 +118,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter a link for your location" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uEz-Nt-WJL">
-                                <rect key="frame" x="199.5" y="98" width="201.5" height="30"/>
+                                <rect key="frame" x="199" y="98" width="201.5" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="102" id="ZGq-MT-ri8"/>
                                 </constraints>
@@ -168,16 +168,21 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="HaQ-9V-rLg">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="Fej-gQ-VA9" firstAttribute="top" secondItem="OFF-0e-2YE" secondAttribute="bottom" constant="145" id="614-MI-kOk"/>
+                            <constraint firstItem="HaQ-9V-rLg" firstAttribute="centerX" secondItem="BaL-FU-kbi" secondAttribute="centerX" id="63R-yb-J7Y"/>
                             <constraint firstItem="ylC-CZ-RBE" firstAttribute="leading" secondItem="BaL-FU-kbi" secondAttribute="leadingMargin" constant="-20" id="AOC-Re-dsM"/>
                             <constraint firstItem="Fej-gQ-VA9" firstAttribute="leading" secondItem="BaL-FU-kbi" secondAttribute="leadingMargin" constant="-20" id="K2g-Yi-Wdc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Fej-gQ-VA9" secondAttribute="trailing" constant="-20" id="Myb-qz-DM3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ylC-CZ-RBE" secondAttribute="trailing" constant="-20" id="RR6-mf-Gkf"/>
                             <constraint firstItem="igu-VD-1dp" firstAttribute="centerX" secondItem="BaL-FU-kbi" secondAttribute="centerX" id="Rdq-Ut-a7J"/>
                             <constraint firstItem="uZQ-YF-RpT" firstAttribute="top" secondItem="Fej-gQ-VA9" secondAttribute="bottom" id="TfE-KW-yMH"/>
+                            <constraint firstItem="HaQ-9V-rLg" firstAttribute="centerY" secondItem="BaL-FU-kbi" secondAttribute="centerY" id="ZUe-t2-6tl"/>
                             <constraint firstItem="zSo-0G-afx" firstAttribute="top" secondItem="Fej-gQ-VA9" secondAttribute="bottom" constant="-42" id="bCL-jz-sgV"/>
                             <constraint firstItem="NdI-b0-egQ" firstAttribute="top" secondItem="igu-VD-1dp" secondAttribute="bottom" constant="128" id="fUF-rO-Exi"/>
                             <constraint firstItem="5Ig-us-QTM" firstAttribute="top" secondItem="NdI-b0-egQ" secondAttribute="bottom" constant="62" id="lPV-7U-fdy"/>
@@ -196,6 +201,7 @@
                         <outlet property="locationTextField" destination="NdI-b0-egQ" id="l5O-Mg-U7F"/>
                         <outlet property="mapView" destination="Fej-gQ-VA9" id="r2V-df-jdk"/>
                         <outlet property="mediaLinkTextField" destination="uEz-Nt-WJL" id="rH7-oh-q5t"/>
+                        <outlet property="spinner" destination="HaQ-9V-rLg" id="eou-u8-Hag"/>
                         <outlet property="submitButton" destination="zSo-0G-afx" id="oiW-Xs-ZOg"/>
                     </connections>
                 </viewController>

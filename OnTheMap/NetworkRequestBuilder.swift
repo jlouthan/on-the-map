@@ -202,7 +202,6 @@ class NetworkRequestBuilder: NSObject {
             completionHandlerForConvertData(result: parsedResult, error: nil)
         } catch {
             //Special Udacity case
-            //TODO clean this up
             let newData = data.subdataWithRange(NSMakeRange(5, data.length - 5)) /* subset response data! */
             do {
                 parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments)

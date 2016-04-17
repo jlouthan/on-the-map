@@ -17,6 +17,7 @@ class InfoPostingViewController: UIViewController {
     @IBOutlet weak var mediaLinkTextField: UITextField!
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     //MARK: Submission State
     var mapString: String = ""
@@ -31,6 +32,7 @@ class InfoPostingViewController: UIViewController {
     
     private func initUI() {
         performUIUpdatesOnMain {
+            self.spinner.hidden = true
             self.mediaLinkTextField.hidden = true
             self.submitButton.hidden = true
             self.locationLabel.hidden = false
@@ -50,6 +52,7 @@ class InfoPostingViewController: UIViewController {
         findOnMapButton.hidden = true
         locationTextField.hidden = true
         locationLabel.hidden = true
+        spinner.hidden = false
         handleLocationString(locationTextField.text!)
     }
     
@@ -80,8 +83,10 @@ class InfoPostingViewController: UIViewController {
     }
     
     private func handleLocationString(locationString: String) {
-        //TODO "display activity" here
+        spinner.startAnimating()
         CLGeocoder().geocodeAddressString(locationString) { (placemarks, error) in
+            self.spinner.stopAnimating()
+            self.spinner.hidden = true
             guard error == nil else {
                 self.displayError("The location you entered could not be geocoded. Please try again.")
                 self.initUI()
