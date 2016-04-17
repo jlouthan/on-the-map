@@ -132,10 +132,10 @@
                                     <action selector="findOnMapPressed:" destination="vqn-mk-43O" eventType="touchUpInside" id="GCe-8Q-g0O"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NdI-b0-egQ">
-                                <rect key="frame" x="249" y="285" width="102" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your location name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NdI-b0-egQ">
+                                <rect key="frame" x="172" y="285" width="256" height="30"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="102" id="NeL-rW-PX0"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="256" id="NeL-rW-PX0"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -162,6 +162,12 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Where are you studying today?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="igu-VD-1dp">
+                                <rect key="frame" x="182" y="136" width="237" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -170,8 +176,10 @@
                             <constraint firstItem="Fej-gQ-VA9" firstAttribute="leading" secondItem="BaL-FU-kbi" secondAttribute="leadingMargin" constant="-20" id="K2g-Yi-Wdc"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Fej-gQ-VA9" secondAttribute="trailing" constant="-20" id="Myb-qz-DM3"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ylC-CZ-RBE" secondAttribute="trailing" constant="-20" id="RR6-mf-Gkf"/>
+                            <constraint firstItem="igu-VD-1dp" firstAttribute="centerX" secondItem="BaL-FU-kbi" secondAttribute="centerX" id="Rdq-Ut-a7J"/>
                             <constraint firstItem="uZQ-YF-RpT" firstAttribute="top" secondItem="Fej-gQ-VA9" secondAttribute="bottom" id="TfE-KW-yMH"/>
                             <constraint firstItem="zSo-0G-afx" firstAttribute="top" secondItem="Fej-gQ-VA9" secondAttribute="bottom" constant="-42" id="bCL-jz-sgV"/>
+                            <constraint firstItem="NdI-b0-egQ" firstAttribute="top" secondItem="igu-VD-1dp" secondAttribute="bottom" constant="128" id="fUF-rO-Exi"/>
                             <constraint firstItem="5Ig-us-QTM" firstAttribute="top" secondItem="NdI-b0-egQ" secondAttribute="bottom" constant="62" id="lPV-7U-fdy"/>
                             <constraint firstItem="Fej-gQ-VA9" firstAttribute="top" secondItem="uEz-Nt-WJL" secondAttribute="bottom" constant="37" id="nxD-9M-PQk"/>
                             <constraint firstItem="NdI-b0-egQ" firstAttribute="centerX" secondItem="BaL-FU-kbi" secondAttribute="centerX" id="p3H-il-Bqa"/>
@@ -184,6 +192,7 @@
                     </view>
                     <connections>
                         <outlet property="findOnMapButton" destination="5Ig-us-QTM" id="GpV-hn-sC0"/>
+                        <outlet property="locationLabel" destination="igu-VD-1dp" id="r5p-zE-Mib"/>
                         <outlet property="locationTextField" destination="NdI-b0-egQ" id="l5O-Mg-U7F"/>
                         <outlet property="mapView" destination="Fej-gQ-VA9" id="r2V-df-jdk"/>
                         <outlet property="mediaLinkTextField" destination="uEz-Nt-WJL" id="rH7-oh-q5t"/>

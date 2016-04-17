@@ -11,6 +11,7 @@ import UIKit
 import MapKit
 
 class InfoPostingViewController: UIViewController {
+    @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var findOnMapButton: UIButton!
     @IBOutlet weak var mediaLinkTextField: UITextField!
@@ -29,21 +30,26 @@ class InfoPostingViewController: UIViewController {
     }
     
     private func initUI() {
-        mediaLinkTextField.hidden = true
-        submitButton.hidden = true
-        locationTextField.hidden = false
-        findOnMapButton.hidden = false
-        findOnMapButton.enabled = true
+        performUIUpdatesOnMain {
+            self.mediaLinkTextField.hidden = true
+            self.submitButton.hidden = true
+            self.locationLabel.hidden = false
+            self.locationTextField.hidden = false
+            self.locationTextField.text = nil
+            self.findOnMapButton.hidden = false
+            self.findOnMapButton.enabled = true
+        }
     }
     
     @IBAction func findOnMapPressed(sender: AnyObject) {
         guard !locationTextField.text!.isEmpty else {
-            print("Missing Required field")
+            displayError("Please enter a location name")
             return
         }
         findOnMapButton.enabled = false
         findOnMapButton.hidden = true
         locationTextField.hidden = true
+        locationLabel.hidden = true
         handleLocationString(locationTextField.text!)
     }
     
@@ -81,7 +87,8 @@ class InfoPostingViewController: UIViewController {
         //TODO "display activity" here
         CLGeocoder().geocodeAddressString(locationString) { (placemarks, error) in
             guard error == nil else {
-                print(error)
+                self.displayError("The location you entered could not be geocoded. Please try again.")
+                self.initUI()
                 return
             }
             if let placemark = placemarks?.first {
@@ -99,6 +106,14 @@ class InfoPostingViewController: UIViewController {
                 self.mediaLinkTextField.hidden = false
                 self.submitButton.hidden = false
             }
+        }
+    }
+    
+    private func displayError(errorString: String) {
+        performUIUpdatesOnMain {
+            let alert = UIAlertController(title: "Error Creating Location", message: errorString, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
         }
     }
     
