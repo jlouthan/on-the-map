@@ -23,6 +23,7 @@
 		1821AABF1CBB4652001D9E5B /* ParseClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821AABE1CBB4652001D9E5B /* ParseClient.swift */; };
 		1821AAC11CBB46C9001D9E5B /* ParseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821AAC01CBB46C9001D9E5B /* ParseConstants.swift */; };
 		1821AAC31CBB488A001D9E5B /* ParseConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821AAC21CBB488A001D9E5B /* ParseConvenience.swift */; };
+		1821E7001CC44DD3007AEA2B /* DefaultButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1821E6FF1CC44DD3007AEA2B /* DefaultButton.swift */; };
 		182B58CE1CBEAD5E00D5DA4A /* InfoPostingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182B58CD1CBEAD5E00D5DA4A /* InfoPostingViewController.swift */; };
 		18CBDB841CBC89B100B1F968 /* StudentInformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBDB831CBC89B100B1F968 /* StudentInformation.swift */; };
 		18CBDB861CBC92FE00B1F968 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18CBDB851CBC92FE00B1F968 /* TableViewController.swift */; };
@@ -68,6 +69,7 @@
 		1821AABE1CBB4652001D9E5B /* ParseClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseClient.swift; sourceTree = "<group>"; };
 		1821AAC01CBB46C9001D9E5B /* ParseConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConstants.swift; sourceTree = "<group>"; };
 		1821AAC21CBB488A001D9E5B /* ParseConvenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseConvenience.swift; sourceTree = "<group>"; };
+		1821E6FF1CC44DD3007AEA2B /* DefaultButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultButton.swift; sourceTree = "<group>"; };
 		182B58CD1CBEAD5E00D5DA4A /* InfoPostingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoPostingViewController.swift; sourceTree = "<group>"; };
 		18CBDB831CBC89B100B1F968 /* StudentInformation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StudentInformation.swift; sourceTree = "<group>"; };
 		18CBDB851CBC92FE00B1F968 /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 		1821AAAB1CBAF28E001D9E5B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				1821E6FF1CC44DD3007AEA2B /* DefaultButton.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 				1821AAAE1CBAF2C3001D9E5B /* LoginViewController.swift in Sources */,
 				1821AABC1CBB3E7E001D9E5B /* MapViewController.swift in Sources */,
 				1821AABF1CBB4652001D9E5B /* ParseClient.swift in Sources */,
+				1821E7001CC44DD3007AEA2B /* DefaultButton.swift in Sources */,
 				1821AA7D1CBAEC8D001D9E5B /* AppDelegate.swift in Sources */,
 				18CBDB841CBC89B100B1F968 /* StudentInformation.swift in Sources */,
 				1821AAB81CBB007C001D9E5B /* UdacityConvenience.swift in Sources */,
