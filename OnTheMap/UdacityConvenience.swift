@@ -14,6 +14,7 @@ extension UdacityClient {
     
     //MARK: POST Convenience Methods
     
+    //Login
     func createSession(email: String, password: String, completionHandlerForCreateSession: (success: Bool, error: String?) -> Void) {
         
         //Creat the NSURL
@@ -56,6 +57,34 @@ extension UdacityClient {
         
     }
     
+    
+    //Logout
+    func deleteCurrentSession(completionHandlerForDeleteSession: (success: Bool, error: String?) -> Void) {
+        //Create the URL
+        let url = udacityURLWithMethod(Methods.DeleteSession)
+        
+        //Look for cookie to set proper header
+        var headers = [String: String]()
+        var xsrfCookie: NSHTTPCookie? = nil
+        let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+        for cookie in sharedCookieStorage.cookies! {
+            if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+        }
+        if let xsrfCookie = xsrfCookie {
+            headers[HeaderKeys.XSRFToken] = xsrfCookie.value
+        }
+        
+        requestBuilder.taskForDELETEMethod(url, headers: headers) { (result, error) in
+            guard error == nil else {
+                completionHandlerForDeleteSession(success: false, error: error)
+                return
+            }
+            completionHandlerForDeleteSession(success: true, error: nil)
+        }
+        
+    }
+    
+    //Get current user info
     func getUserInfo(userId: String, completionHandlerForGetUserInfo: (result: AnyObject!, error: String?) -> Void) {
         //Create the URL
         let url = udacityURLWithMethod(requestBuilder.subtituteKeyInMethod(Methods.UserData, key: URLKeys.UserId, value: userId))

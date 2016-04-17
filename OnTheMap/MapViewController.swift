@@ -92,8 +92,15 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     
     //MARK: Logout
     func logout() {
-        //TODO actually log out here with Udacity client
-        dismissViewControllerAnimated(true, completion: nil)
+        parentViewController!.navigationItem.leftBarButtonItem!.enabled = false
+        UdacityClient.sharedInstance().deleteCurrentSession { (success, error) in
+            if error != nil {
+                print(error)
+            }
+            performUIUpdatesOnMain({
+                self.dismissViewControllerAnimated(true, completion: nil)
+            })
+        }
     }
     
     //MARK: Display Errors

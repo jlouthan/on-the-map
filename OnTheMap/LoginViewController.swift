@@ -15,6 +15,15 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        //reset the UI
+        emailField.text = nil
+        passwordField.text = nil
+        setUIEnabled(true)
+    }
+    
     @IBAction func loginPressed(sender: AnyObject) {
         setUIEnabled(false)
         guard !emailField.text!.isEmpty && !passwordField.text!.isEmpty else {
@@ -59,6 +68,7 @@ extension LoginViewController {
             loginButton.alpha = 0.5
         }
     }
+
     
     private func displayError(errorString: String?) {
         if let errorString = errorString {

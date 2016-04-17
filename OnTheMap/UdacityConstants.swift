@@ -21,6 +21,7 @@ extension UdacityClient {
     //MARK: Methods
     struct Methods {
         static let CreateSession = "/session"
+        static let DeleteSession = "/session"
         static let UserData = "/users/{userId}"
     }
     
@@ -43,5 +44,10 @@ extension UdacityClient {
         static let User = "user"
         static let FirstName = "first_name"
         static let LastName = "last_name"
+    }
+    
+    //MARK: Header Keys
+    struct HeaderKeys {
+        static let XSRFToken = "X-XSRF-TOKEN"
     }
 }

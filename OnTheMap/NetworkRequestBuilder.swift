@@ -32,13 +32,7 @@ class NetworkRequestBuilder: NSObject {
             
             /* GUARD: Was there an error? */
             guard (error == nil) else {
-                var errorText: String
-                if let errorDict = error!.userInfo[NSLocalizedDescriptionKey] as? [String: AnyObject] {
-                    errorText = errorDict["error"] as! String
-                } else {
-                    errorText = error!.userInfo[NSLocalizedDescriptionKey] as! String
-                }
-                sendError(errorText)
+                sendError(self.getStringFromError(error!))
                 return
             }
             
@@ -73,7 +67,7 @@ class NetworkRequestBuilder: NSObject {
         return task
     }
     
-    // MARK: POST
+    // MARK: Generic POST request
     
     func taskForPOSTMethod (url: NSURL, JSONBody: [String: AnyObject], headers: [String: String], completionHandlerForPOST: (result: AnyObject!, error: String?) -> Void) -> NSURLSessionDataTask {
         
@@ -97,13 +91,7 @@ class NetworkRequestBuilder: NSObject {
             
             /* GUARD: Was there an error? */
             guard (error == nil) else {
-                var errorText: String
-                if let errorDict = error!.userInfo[NSLocalizedDescriptionKey] as? [String: AnyObject] {
-                    errorText = errorDict["error"] as! String
-                } else {
-                    errorText = error!.userInfo[NSLocalizedDescriptionKey] as! String
-                }
-                sendError(errorText)
+                sendError(self.getStringFromError(error!))
                 return
             }
             
@@ -138,6 +126,72 @@ class NetworkRequestBuilder: NSObject {
         return task
         
     }
+    
+    //MARK Generic DELETE Request
+    func taskForDELETEMethod(url: NSURL, headers: [String: String], completionHandlerForDELETE: (result: AnyObject!, error: String?) -> Void) -> NSURLSessionDataTask {
+        
+        //Accepting a ready-build url, so we start here
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "DELETE"
+        //Add any additional headers
+        for (key, value) in headers {
+            request.addValue(value, forHTTPHeaderField: key)
+        }
+        
+        let task = session.dataTaskWithRequest(request) { (data, response, error) in
+            
+            func sendError(errorString: String) {
+                completionHandlerForDELETE(result: nil, error: errorString)
+            }
+            
+            /* GUARD: Was there an error? */
+            guard error == nil else {
+                sendError(self.getStringFromError(error!))
+                return
+            }
+            
+            /* GUARD: Was there any data returned? */
+            guard let data = data else {
+                sendError("No data was returned by the request")
+                return
+            }
+            
+            /* GUARD: Did we get a successful 2XX response? */
+            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+                self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: { (result, error) in
+                    let errorString: String
+                    if let errorDict = result as? [String: AnyObject] {
+                        errorString = errorDict["error"] as! String
+                    } else {
+                        errorString = NSString(data: data, encoding: NSUTF8StringEncoding) as! String
+                    }
+                    sendError(errorString)
+                    return
+                })
+                return
+            }
+            
+            //Parse the data and use the data (happens in completion handler) */
+            self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForDELETE)
+        }
+        
+        task.resume()
+        
+        return task
+        
+    }
+    
+    //MARK Helpers
+    private func getStringFromError(error: NSError) -> String {
+        var errorText: String
+        if let errorDict = error.userInfo[NSLocalizedDescriptionKey] as? [String: AnyObject] {
+            errorText = errorDict["error"] as! String
+        } else {
+            errorText = error.userInfo[NSLocalizedDescriptionKey] as! String
+        }
+        return errorText
+    }
+    
     
     // given raw JSON, return a usable Foundation object
     private func convertDataWithCompletionHandler(data: NSData, completionHandlerForConvertData: (result: AnyObject!, error: String?) -> Void) {
