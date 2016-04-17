@@ -55,14 +55,13 @@ class InfoPostingViewController: UIViewController {
     
     @IBAction func submitPressed(sender: AnyObject) {
         guard !mediaLinkTextField.text!.isEmpty else {
-            print("Missing required field")
+            displayError("Please enter a link to associate with your location")
             return
         }
         
         let currentStudentDict = [
             ParseClient.ResponseKeys.StudentFirstName: UdacityClient.sharedInstance().userFirstName!,
             ParseClient.ResponseKeys.StudentLastName: UdacityClient.sharedInstance().userLastName!,
-            //dummy values for not. get from UI later
             ParseClient.ResponseKeys.StudentLatitude: pinLocation.latitude,
             ParseClient.ResponseKeys.StudentLongitude: pinLocation.longitude,
             ParseClient.ResponseKeys.StudentMediaURL: mediaLinkTextField.text!,
@@ -71,14 +70,11 @@ class InfoPostingViewController: UIViewController {
         ] as [String: AnyObject]
         
         let currentStudent = StudentInformation(dictionary: currentStudentDict)
-        print(currentStudent)
         ParseClient.sharedInstance().postStudentLocation(currentStudent) { (success, error) in
             guard error == nil else {
-                //TODO do something if there's an error
-                print(error)
+                self.displayError(error!)
                 return
             }
-            print("success posting new location")
             self.dismiss()
         }
     }
