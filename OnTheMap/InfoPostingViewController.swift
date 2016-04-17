@@ -61,6 +61,7 @@ class InfoPostingViewController: UIViewController {
             displayError("Please enter a link to associate with your location")
             return
         }
+        submitButton.enabled = false
         
         let currentStudentDict = [
             ParseClient.ResponseKeys.StudentFirstName: UdacityClient.sharedInstance().userFirstName!,
@@ -74,6 +75,9 @@ class InfoPostingViewController: UIViewController {
         
         let currentStudent = StudentInformation(dictionary: currentStudentDict)
         ParseClient.sharedInstance().postStudentLocation(currentStudent) { (success, error) in
+            performUIUpdatesOnMain({ 
+                self.submitButton.enabled = true
+            })
             guard error == nil else {
                 self.displayError(error!)
                 return

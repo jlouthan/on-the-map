@@ -38,15 +38,31 @@
                                     <action selector="loginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gdE-cd-a0h"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login with your Udacity account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z74-Rz-m0h">
+                                <rect key="frame" x="177" y="145" width="246" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On The Map" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1AO-bB-uz4">
+                                <rect key="frame" x="194" y="41" width="213" height="43"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="37"/>
+                                <color key="textColor" red="0.8462094907407407" green="0.22092840893517493" blue="0.74844340393487818" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="i9s-zn-4Cs" firstAttribute="top" secondItem="80I-kY-695" secondAttribute="bottom" constant="27" id="0ve-xi-iJs"/>
                             <constraint firstItem="CIW-oq-cAr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2IR-ad-mud"/>
+                            <constraint firstItem="1AO-bB-uz4" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="428-qR-MFK"/>
                             <constraint firstItem="CIW-oq-cAr" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="167" id="Atg-tz-17b"/>
+                            <constraint firstItem="z74-Rz-m0h" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="DgC-sj-f5i"/>
                             <constraint firstItem="i9s-zn-4Cs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Gin-i0-kI1"/>
                             <constraint firstItem="80I-kY-695" firstAttribute="width" secondItem="CIW-oq-cAr" secondAttribute="width" id="S2r-Sj-agj"/>
+                            <constraint firstItem="1AO-bB-uz4" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="21" id="TyY-1R-vtc"/>
                             <constraint firstItem="80I-kY-695" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WVm-ol-SNj"/>
+                            <constraint firstItem="CIW-oq-cAr" firstAttribute="top" secondItem="z74-Rz-m0h" secondAttribute="bottom" constant="21" id="e4t-nj-hwR"/>
                             <constraint firstItem="80I-kY-695" firstAttribute="top" secondItem="CIW-oq-cAr" secondAttribute="bottom" constant="25" id="qM0-ya-Jrt"/>
                         </constraints>
                     </view>
