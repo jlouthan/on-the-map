@@ -14,7 +14,7 @@ extension UdacityClient {
     
     //MARK: POST Convenience Methods
     
-    func createSession(email: String, password: String, completionHandlerForCreateSession: (success: Bool, error: NSError?) -> Void) {
+    func createSession(email: String, password: String, completionHandlerForCreateSession: (success: Bool, error: String?) -> Void) {
         
         //Creat the NSURL
         let url = udacityURLWithMethod(Methods.CreateSession)
@@ -49,14 +49,14 @@ extension UdacityClient {
                     completionHandlerForCreateSession(success: true, error: nil)
                 });
             } else {
-                completionHandlerForCreateSession(success: false, error: NSError(domain: "create session response parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse Create Session Response"]))
+                completionHandlerForCreateSession(success: false, error: "Error parsing Create Session Response")
             }
             
         }
         
     }
     
-    func getUserInfo(userId: String, completionHandlerForGetUserInfo: (result: AnyObject!, error: NSError?) -> Void) {
+    func getUserInfo(userId: String, completionHandlerForGetUserInfo: (result: AnyObject!, error: String?) -> Void) {
         //Create the URL
         let url = udacityURLWithMethod(requestBuilder.subtituteKeyInMethod(Methods.UserData, key: URLKeys.UserId, value: userId))
         requestBuilder.taskForGETMethod(url, headers: [String:String]()) { (result, error) in
@@ -68,7 +68,7 @@ extension UdacityClient {
             if let userInfo = result[JSONResponseKeys.User] as? [String: AnyObject] {
                 completionHandlerForGetUserInfo(result: userInfo, error: nil)
             } else {
-                completionHandlerForGetUserInfo(result: nil, error: NSError(domain: "get user info response parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse Get User Info Response as expected"]))
+                completionHandlerForGetUserInfo(result: nil, error: "Error parsing Get User Info Response")
             }
             
         }

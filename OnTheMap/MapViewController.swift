@@ -28,8 +28,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         
         ParseClient.sharedInstance().getStudentLocations { (success, error) in
             guard success && error == nil else {
-                //TODO show error in UI somehow
-                print(error)
+                self.displayError(error!)
                 return
             }
             
@@ -95,5 +94,15 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func logout() {
         //TODO actually log out here with Udacity client
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    //MARK: Display Errors
+    private func displayError(errorString: String) {
+        performUIUpdatesOnMain {
+            let alert = UIAlertController(title: "Error Getting Student Info", message: errorString, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            let parent = self.parentViewController! as! UITabBarController
+            parent.presentViewController(alert, animated: true, completion: nil)
+        }
     }
 }

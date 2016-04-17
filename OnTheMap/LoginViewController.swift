@@ -16,27 +16,20 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginButton: UIButton!
     
     @IBAction func loginPressed(sender: AnyObject) {
-        loginButton.enabled = false
+        setUIEnabled(false)
         guard !emailField.text!.isEmpty && !passwordField.text!.isEmpty else {
             displayError("Missing required field")
-            loginButton.enabled = true
+            setUIEnabled(true)
             return
         }
         UdacityClient.sharedInstance().createSession(emailField.text!, password: passwordField.text!) { (success, error) in
             
             performUIUpdatesOnMain({
                 if success {
-                    print("success!")
                     self.completeLogin()
                 } else {
-                    var errorText: String?
-                    if let errorDict = error!.userInfo[NSLocalizedDescriptionKey] as? [String: AnyObject] {
-                        errorText = errorDict["error"] as? String
-                    } else {
-                        errorText = error!.userInfo[NSLocalizedDescriptionKey] as? String
-                    }
-                    self.displayError(errorText)
-                    self.loginButton.enabled = true
+                    self.displayError(error)
+                    self.setUIEnabled(true)
                 }
             })
             

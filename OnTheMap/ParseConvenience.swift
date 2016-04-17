@@ -12,7 +12,7 @@ extension ParseClient {
     
     //MARK: GET Convenience Methods
     
-    func getStudentLocations(completionHandlerForGetStudentLocations: (success: Bool, error: NSError?) -> Void) {
+    func getStudentLocations(completionHandlerForGetStudentLocations: (success: Bool, error: String?) -> Void) {
         
         //Creat the NSURL
         let parameters = [
@@ -36,15 +36,14 @@ extension ParseClient {
                 self.studentInfo = studentInfo
                 completionHandlerForGetStudentLocations(success: true, error: nil)
             } else {
-                let error = NSError(domain: "getStudentLocations parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse getStudentLocations response"])
-                completionHandlerForGetStudentLocations(success: false, error: error)
+                completionHandlerForGetStudentLocations(success: false, error: "Could not parse getStudentLocations response")
             }
             
         }
         
     }
     
-    func postStudentLocation(studentInfo: StudentInformation, completionHandlerForPostStudentLocation: (success: Bool, error: NSError?) -> Void) {
+    func postStudentLocation(studentInfo: StudentInformation, completionHandlerForPostStudentLocation: (success: Bool, error: String?) -> Void) {
         
         //Create the NSURL
         let parameters = [String: AnyObject]()

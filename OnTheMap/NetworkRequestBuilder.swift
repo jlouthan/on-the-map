@@ -14,7 +14,7 @@ class NetworkRequestBuilder: NSObject {
     
     
     //MARK: Generic GET Request
-    func taskForGETMethod (url: NSURL, headers: [String: String], completionHandlerForGET: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    func taskForGETMethod (url: NSURL, headers: [String: String], completionHandlerForGET: (result: AnyObject!, error: String?) -> Void) -> NSURLSessionDataTask {
         
         //Accepting a ready-build url, so we start here
         let request = NSMutableURLRequest(URL: url)
@@ -26,62 +26,8 @@ class NetworkRequestBuilder: NSObject {
         //Make the request
         let task = session.dataTaskWithRequest(request) { (data, response, error) in
             
-            func sendError(error: String) {
-                print(error)
-                let userInfo = [NSLocalizedDescriptionKey : error]
-                completionHandlerForGET(result: nil, error: NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo))
-            }
-            
-            /* GUARD: Was there an error? */
-            guard (error == nil) else {
-                sendError("There was an error with your request: \(error!)")
-                return
-            }
-            
-            /* GUARD: Did we get a successful 2XX response? */
-            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
-                sendError("Your request returned a status code other than 2xx!")
-                return
-            }
-            
-            /* GUARD: Was there any data returned? */
-            guard let data = data else {
-                sendError("No data was returned by the request!")
-                return
-            }
-            
-            //Parse the data and use the data (happens in completion handler) */
-            self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForGET)
-        }
-        
-        //Start the request
-        task.resume()
-        
-        return task
-    }
-    
-    // MARK: POST
-    
-    func taskForPOSTMethod (url: NSURL, JSONBody: [String: AnyObject], headers: [String: String], completionHandlerForPOST: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
-        
-        //Accepting a ready-build url, so we start here
-        let request = NSMutableURLRequest(URL: url)
-        request.HTTPMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        //Add any additional headers
-        for (key, value) in headers {
-            request.addValue(value, forHTTPHeaderField: key)
-        }
-        request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(JSONBody, options: .PrettyPrinted)
-        
-        //Make the request
-        let task = session.dataTaskWithRequest(request) { (data, response, error) in
-            
-            func sendError(error: String) {
-                print(error)
-                let userInfo = [NSLocalizedDescriptionKey : error]
-                completionHandlerForPOST(result: nil, error: NSError(domain: "taskForGETMethod", code: 1, userInfo: userInfo))
+            func sendError(errorString: String) {
+                completionHandlerForGET(result: nil, error: errorString)
             }
             
             /* GUARD: Was there an error? */
@@ -98,7 +44,72 @@ class NetworkRequestBuilder: NSObject {
             
             /* GUARD: Was there any data returned? */
             guard let data = data else {
-                sendError("No data was returned by the request!")
+                sendError("No data was returned by the request")
+                return
+            }
+            
+            /* GUARD: Did we get a successful 2XX response? */
+            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+                self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: { (result, error) in
+                    let errorString: String
+                    if let errorDict = result as? [String: AnyObject] {
+                        errorString = errorDict["error"] as! String
+                    } else {
+                        errorString = NSString(data: data, encoding: NSUTF8StringEncoding) as! String
+                    }
+                    sendError(errorString)
+                    return
+                })
+                return
+            }
+            
+            //Parse the data and use the data (happens in completion handler) */
+            self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForGET)
+        }
+        
+        //Start the request
+        task.resume()
+        
+        return task
+    }
+    
+    // MARK: POST
+    
+    func taskForPOSTMethod (url: NSURL, JSONBody: [String: AnyObject], headers: [String: String], completionHandlerForPOST: (result: AnyObject!, error: String?) -> Void) -> NSURLSessionDataTask {
+        
+        //Accepting a ready-build url, so we start here
+        let request = NSMutableURLRequest(URL: url)
+        request.HTTPMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        //Add any additional headers
+        for (key, value) in headers {
+            request.addValue(value, forHTTPHeaderField: key)
+        }
+        request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(JSONBody, options: .PrettyPrinted)
+        
+        //Make the request
+        let task = session.dataTaskWithRequest(request) { (data, response, error) in
+            
+            func sendError(errorString: String) {
+                completionHandlerForPOST(result: nil, error: errorString)
+            }
+            
+            /* GUARD: Was there an error? */
+            guard (error == nil) else {
+                var errorText: String
+                if let errorDict = error!.userInfo[NSLocalizedDescriptionKey] as? [String: AnyObject] {
+                    errorText = errorDict["error"] as! String
+                } else {
+                    errorText = error!.userInfo[NSLocalizedDescriptionKey] as! String
+                }
+                sendError(errorText)
+                return
+            }
+            
+            /* GUARD: Was there any data returned? */
+            guard let data = data else {
+                sendError("No data was returned by the request")
                 return
             }
             
@@ -129,7 +140,7 @@ class NetworkRequestBuilder: NSObject {
     }
     
     // given raw JSON, return a usable Foundation object
-    private func convertDataWithCompletionHandler(data: NSData, completionHandlerForConvertData: (result: AnyObject!, error: NSError?) -> Void) {
+    private func convertDataWithCompletionHandler(data: NSData, completionHandlerForConvertData: (result: AnyObject!, error: String?) -> Void) {
         
         var parsedResult: AnyObject!
         do {
@@ -143,8 +154,7 @@ class NetworkRequestBuilder: NSObject {
                 parsedResult = try NSJSONSerialization.JSONObjectWithData(newData, options: .AllowFragments)
                 completionHandlerForConvertData(result: parsedResult, error: nil)
             } catch {
-                let userInfo = [NSLocalizedDescriptionKey : "Could not parse the data as JSON: '\(data)'"]
-                completionHandlerForConvertData(result: nil, error: NSError(domain: "convertDataWithCompletionHandler", code: 1, userInfo: userInfo))
+                completionHandlerForConvertData(result: nil, error: "Could not parse the data as JSON: '\(data)'")
             }
         }
     }
