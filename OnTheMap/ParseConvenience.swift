@@ -16,7 +16,8 @@ extension ParseClient {
         
         //Creat the NSURL
         let parameters = [
-            ParameterKeys.Limit: ParameterValues.DefaultLimit
+            ParameterKeys.Limit: ParameterValues.DefaultLimit,
+            ParameterKeys.Order: ParameterValues.DefaultOrder
         ]
         let url = parseURLWithMethod(parameters, methodPath: Methods.StudentLocations)
         
