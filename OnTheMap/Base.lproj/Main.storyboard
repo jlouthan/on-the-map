@@ -38,29 +38,20 @@
                                     <action selector="loginPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gdE-cd-a0h"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k7t-EM-ZGF">
-                                <rect key="frame" x="300" y="386" width="0.0" height="0.0"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="i9s-zn-4Cs" firstAttribute="top" secondItem="80I-kY-695" secondAttribute="bottom" constant="27" id="0ve-xi-iJs"/>
                             <constraint firstItem="CIW-oq-cAr" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="2IR-ad-mud"/>
                             <constraint firstItem="CIW-oq-cAr" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="167" id="Atg-tz-17b"/>
-                            <constraint firstItem="k7t-EM-ZGF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="EaW-eD-qW7"/>
                             <constraint firstItem="i9s-zn-4Cs" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Gin-i0-kI1"/>
                             <constraint firstItem="80I-kY-695" firstAttribute="width" secondItem="CIW-oq-cAr" secondAttribute="width" id="S2r-Sj-agj"/>
                             <constraint firstItem="80I-kY-695" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="WVm-ol-SNj"/>
                             <constraint firstItem="80I-kY-695" firstAttribute="top" secondItem="CIW-oq-cAr" secondAttribute="bottom" constant="25" id="qM0-ya-Jrt"/>
-                            <constraint firstItem="k7t-EM-ZGF" firstAttribute="top" secondItem="i9s-zn-4Cs" secondAttribute="bottom" constant="57" id="vdO-Hc-tvq"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="emailField" destination="CIW-oq-cAr" id="d5m-Bk-JyU"/>
-                        <outlet property="errorLabel" destination="k7t-EM-ZGF" id="Z3d-8c-f5Z"/>
                         <outlet property="loginButton" destination="i9s-zn-4Cs" id="end-bl-FEw"/>
                         <outlet property="passwordField" destination="80I-kY-695" id="Wxv-nX-Iaj"/>
                     </connections>

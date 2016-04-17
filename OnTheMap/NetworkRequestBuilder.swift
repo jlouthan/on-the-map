@@ -86,7 +86,13 @@ class NetworkRequestBuilder: NSObject {
             
             /* GUARD: Was there an error? */
             guard (error == nil) else {
-                sendError("There was an error with your request: \(error)")
+                var errorText: String
+                if let errorDict = error!.userInfo[NSLocalizedDescriptionKey] as? [String: AnyObject] {
+                    errorText = errorDict["error"] as! String
+                } else {
+                    errorText = error!.userInfo[NSLocalizedDescriptionKey] as! String
+                }
+                sendError(errorText)
                 return
             }
             
@@ -98,16 +104,16 @@ class NetworkRequestBuilder: NSObject {
             
             /* GUARD: Did we get a successful 2XX response? */
             guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
-                //Parse out the error description to provide good error messages in the UI
-                let errorString: String
-                do {
-                    //TODO actually use the dictionary here?
-                    let errorDict = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-                    errorString = errorDict["error"] as! String
-                } catch {
-                    errorString = NSString(data: data, encoding: NSUTF8StringEncoding) as! String
-                }
-                sendError(errorString)
+                self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: { (result, error) in
+                    let errorString: String
+                    if let errorDict = result as? [String: AnyObject] {
+                        errorString = errorDict["error"] as! String
+                    } else {
+                        errorString = NSString(data: data, encoding: NSUTF8StringEncoding) as! String
+                    }
+                    sendError(errorString)
+                    return
+                })
                 return
             }
             

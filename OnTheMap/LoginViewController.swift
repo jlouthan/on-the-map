@@ -13,24 +13,30 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
-    @IBOutlet weak var errorLabel: UILabel!
     @IBOutlet weak var loginButton: UIButton!
     
     @IBAction func loginPressed(sender: AnyObject) {
+        loginButton.enabled = false
         guard !emailField.text!.isEmpty && !passwordField.text!.isEmpty else {
             displayError("Missing required field")
+            loginButton.enabled = true
             return
         }
         UdacityClient.sharedInstance().createSession(emailField.text!, password: passwordField.text!) { (success, error) in
             
-            //TODO handle or display error better here
             performUIUpdatesOnMain({
                 if success {
                     print("success!")
                     self.completeLogin()
                 } else {
-                    let errorText = error!.userInfo[NSLocalizedDescriptionKey] as? String
+                    var errorText: String?
+                    if let errorDict = error!.userInfo[NSLocalizedDescriptionKey] as? [String: AnyObject] {
+                        errorText = errorDict["error"] as? String
+                    } else {
+                        errorText = error!.userInfo[NSLocalizedDescriptionKey] as? String
+                    }
                     self.displayError(errorText)
+                    self.loginButton.enabled = true
                 }
             })
             
@@ -63,7 +69,11 @@ extension LoginViewController {
     
     private func displayError(errorString: String?) {
         if let errorString = errorString {
-            errorLabel.text = errorString
+            
+            let alert = UIAlertController(title: "Login Error", message: errorString, preferredStyle: UIAlertControllerStyle.Alert)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+            self.presentViewController(alert, animated: true, completion: nil)
+            
         }
     }
 }
