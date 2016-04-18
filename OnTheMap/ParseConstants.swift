@@ -38,7 +38,7 @@ extension ParseClient {
     //MARK: Parameter Values 
     struct ParameterValues {
         static let DefaultLimit = "100"
-        static let DefaultOrder = "-createdAt"
+        static let DefaultOrder = "-updatedAt"
     }
     
     //MARK: Response Keys
