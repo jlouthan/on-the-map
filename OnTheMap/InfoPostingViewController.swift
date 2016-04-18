@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import MapKit
 
-class InfoPostingViewController: UIViewController {
+class InfoPostingViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var locationTextField: UITextField!
     @IBOutlet weak var findOnMapButton: UIButton!
@@ -24,6 +24,11 @@ class InfoPostingViewController: UIViewController {
     var pinLocation: CLLocationCoordinate2D = CLLocationCoordinate2D()
     
     //MARK: Life Cycle
+    
+    override func viewDidLoad() {
+        locationTextField.delegate = self
+        mediaLinkTextField.delegate = self
+    }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
@@ -128,5 +133,11 @@ class InfoPostingViewController: UIViewController {
     
     @IBAction func cancelPressed(sender: AnyObject) {
         dismiss()
+    }
+    
+    //MARK Text Field Delegate
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
     }
 }
